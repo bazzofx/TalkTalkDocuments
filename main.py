@@ -8,6 +8,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.llms import HuggingFaceHub
+from htmlTemplates import css, bot_template, user_template
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -52,9 +53,16 @@ def main():
     load_dotenv()
     st.set_page_config(page_title="Chat with your PDFs ", page_icon="🙄")
     
+    st.write(css,unsafe_allow_html=True)
+    
+    if "conversation" not in st.session_state:
+        st.session_state.conversation = None
+        
     st.header("Chat with your files")
     st.text_input("Ask a question about your documents.")
     
+    st.write(user_template.replace("{{MSG}}","Hello robot"), unsafe_allow_html=True)
+    st.write(bot_template.replace("{{MSG}}","Hello there, upload your file on the left and ask me a question, if you dare.."), unsafe_allow_html=True)
     with st.sidebar:
         st.subheader("Your Documents")
         pdf_docs = st.file_uploader("Upload your documnets here", accept_multiple_files=True)
