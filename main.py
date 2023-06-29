@@ -73,15 +73,19 @@ def main():
         st.session_state.conversation = None
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
+    if "vectorstore" not in st.session_state:
+        st.session_state.vectorstore = None
     
     st.image("cs-white.png", width=400)    
     st.header("Chit-Chat with your files 📁")
     user_question = st.text_input("Ask a question about your documents.")
-    if user_question:
+    if user_question and st.session_state.vectorstore is not None:
+        st.write(st.session_state.vectorstore)
         handle_userinput(user_question)
+    else:
+        st.session_state.is_last_question = True
        
     
-    st.write(user_template.replace("{{MSG}}","Hello robot"), unsafe_allow_html=True)
     st.write(bot_template.replace("{{MSG}}","Hello there, upload your file on the left and ask me a question, if you dare.."), unsafe_allow_html=True)
     with st.sidebar:
         st.subheader("Your Documents")
@@ -94,9 +98,11 @@ def main():
                 #get pdf chunks
                 text_chunks = get_text_chunks(raw_text)
                 #create vector store
-                vectorstore = get_vectorstore(text_chunks)
+                st.session_state.vectorstore = get_vectorstore(text_chunks)
+                vectorstore = st.session_state.vectorstore
                 
                 st.session_state.conversation = get_conversation_chain(vectorstore)
+                st.subheader("Uploaded Completed 🃏" )
 
 if __name__ == ('__main__'):
     main()
