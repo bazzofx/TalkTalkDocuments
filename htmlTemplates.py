@@ -36,14 +36,19 @@ body{
   width: 80%;
   padding: 0 1.5rem;
   font-size:1.2rem;
+  filter:none;
 }
 .chat-message.bot:hover{
 color:lightgreen;
+filter: drop-shadow(16px 16px 20px red) invert(85%);
 }
 
-
+.chat-message.bot .message:hover {
+    font-size:1.4rem;
+}
 .chat-message.user:hover{
 color:lightblue;
+filter: hue-rotate(90deg);
 }
 
 '''
