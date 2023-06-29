@@ -10,6 +10,8 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.llms import HuggingFaceHub
 from htmlTemplates import css, bot_template, user_template
 
+#HTML STYLE HERE
+
 
 repoId = "google/flan-t5-xxl"
 #repoId = "abhiramtirumala/DialoGPT-sarcastic"
@@ -65,15 +67,15 @@ def handle_userinput(user_question):
 def main():
     load_dotenv()
     st.set_page_config(page_title="Chat with your PDFs ", page_icon="🔐")
-    
     st.write(css,unsafe_allow_html=True)
     
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
-        
-    st.header("Chat with your files")
+    
+    st.image("cs-white.png", width=400)    
+    st.header("Chit-Chat with your files 📁")
     user_question = st.text_input("Ask a question about your documents.")
     if user_question:
         handle_userinput(user_question)
