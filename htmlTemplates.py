@@ -1,13 +1,27 @@
 css = '''
 <style>
+body{
+    background-color: #15181e;
+}
+
+
 .chat-message {
-    padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem; display: flex
+    padding: 1.5rem; 
+  border-radius: 0.5rem; 
+  margin-bottom: 1rem; 
+  display: flex;
+  
 }
 .chat-message.user {
-    background-color: #2b313e
+    background-color: #2a303c;
+  color: #ccc;
+  cursor: help;
+      
 }
 .chat-message.bot {
-    background-color: #475063
+    background-color: #475063;
+  color: #fff;
+  cursor:crosshair;
 }
 .chat-message .avatar {
   width: 20%;
@@ -21,9 +35,17 @@ css = '''
 .chat-message .message {
   width: 80%;
   padding: 0 1.5rem;
-  color: #fff;
-  font-size:1.4rem;
+  font-size:1.2rem;
 }
+.chat-message.bot:hover{
+color:lightgreen;
+}
+
+
+.chat-message.user:hover{
+color:lightblue;
+}
+
 '''
 
 bot_template = '''
@@ -38,7 +60,7 @@ bot_template = '''
 user_template = '''
 <div class="chat-message user">
     <div class="avatar">
-        <img src="https://www.mattosfilho.com.br/wp-content/uploads/2022/05/andrea-bazzo-1.png">
+        <img src="http://cybersamurai.co.uk/assets/images/profileAi/profileAi%20(23).jpg">
     </div>    
     <div class="message">{{MSG}}</div>
 </div>

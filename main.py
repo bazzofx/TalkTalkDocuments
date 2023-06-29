@@ -10,6 +10,10 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.llms import HuggingFaceHub
 from htmlTemplates import css, bot_template, user_template
 
+
+repoId = "google/flan-t5-xxl"
+#repoId = "abhiramtirumala/DialoGPT-sarcastic"
+
 def get_pdf_text(pdf_docs): #extract pdf pages from all .pdfs
     text = ""
     for pdf in pdf_docs:
@@ -37,7 +41,7 @@ def get_vectorstore(text_chunks): #make the embeddings from the chunks
 
 def get_conversation_chain(vectorstore):
     #llm = ChatOpenAI()
-    llm = HuggingFaceHub(repo_id="google/flan-t5-xxl", model_kwargs={"temperature":0.4, "max_length":512})
+    llm = HuggingFaceHub(repo_id=repoId, model_kwargs={"temperature":0.4, "max_length":512})
 
     memory = ConversationBufferMemory(
         memory_key='chat_history', return_messages=True)
@@ -60,7 +64,7 @@ def handle_userinput(user_question):
     
 def main():
     load_dotenv()
-    st.set_page_config(page_title="Chat with your PDFs ", page_icon="🙄")
+    st.set_page_config(page_title="Chat with your PDFs ", page_icon="🔐")
     
     st.write(css,unsafe_allow_html=True)
     
