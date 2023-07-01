@@ -42,8 +42,8 @@ def get_vectorstore(text_chunks): #make the embeddings from the chunks
     return vectorstore    
 
 def get_conversation_chain(vectorstore):
-    #llm = ChatOpenAI()
-    llm = HuggingFaceHub(repo_id=repoId, model_kwargs={"temperature":0.4, "max_length":512})
+    llm = ChatOpenAI()
+    #llm = HuggingFaceHub(repo_id=repoId, model_kwargs={"temperature":0.4, "max_length":512})
 
     memory = ConversationBufferMemory(
         memory_key='chat_history', return_messages=True)
@@ -66,7 +66,7 @@ def handle_userinput(user_question):
     
 def main():
     load_dotenv()
-    st.set_page_config(page_title="Chat with your PDFs ", page_icon="🔐")
+    st.set_page_config(page_title="Chat with your PDFs ", page_icon="🗄️") 
     st.write(css,unsafe_allow_html=True)
     
     if "conversation" not in st.session_state:
@@ -77,7 +77,7 @@ def main():
         st.session_state.vectorstore = None
     
     st.image("cs-white.png", width=400)    
-    st.header("Chit-Chat with your files 📁")
+    st.header("Chit-Chat with your files🗄️🐱‍👤")
     user_question = st.text_input("Ask a question about your documents.")
     if user_question and st.session_state.vectorstore is not None:
         st.write(st.session_state.vectorstore)
@@ -102,7 +102,11 @@ def main():
                 vectorstore = st.session_state.vectorstore
                 
                 st.session_state.conversation = get_conversation_chain(vectorstore)
-                st.subheader("Uploaded Completed 🃏" )
+                st.subheader("Uploaded Completed ✔️" )
+                
+                
+    st.markdown("---")
+    st.markdown("[Made by ☘️ Paulo Bazzo](https://cybersamurai.co.uk)")
 
 if __name__ == ('__main__'):
     main()

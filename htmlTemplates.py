@@ -1,10 +1,16 @@
 css = '''
 <style>
 body{
-    background-color: #15181e;
+    background-color: red !important;
 }
 
-
+.css-1m1kki9, .css-1k35nym, .css-f2nqe9, .css-n5k75g, .css-4z1n4 {
+  display:none !important;
+}
+img, .css-10trblm{
+ mouseevent:none;
+  
+}
 .chat-message {
     padding: 1.5rem; 
   border-radius: 0.5rem; 
@@ -36,7 +42,6 @@ body{
   width: 80%;
   padding: 0 1.5rem;
   font-size:1.2rem;
-  filter:none;
 }
 .chat-message.bot:hover{
 color:lightgreen;
@@ -45,7 +50,10 @@ filter: drop-shadow(16px 16px 20px red) invert(85%);
 
 .chat-message.user:hover{
 color:lightblue;
-filter: hue-rotate(90deg);
+}
+
+.css-cio0dv, .css-eh5xgm{
+    display:none;
 }
 
 '''
