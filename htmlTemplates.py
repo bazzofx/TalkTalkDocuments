@@ -7,6 +7,7 @@ body{
 .css-1m1kki9, .css-1k35nym, .css-f2nqe9, .css-n5k75g, .css-4z1n4 {
   display:none !important;
 }
+
 img, .css-10trblm{
  mouseevent:none;
   
